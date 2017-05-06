@@ -1,2 +1,1 @@
-{"type":"lamp","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken"}
-{"type":"lamp","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken"}
+{"type":"lamp","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken", "report": {"priority":"high", "comment":"This is a comment", "resolved":"true", "report_date":"iso_date", "resolve_date":"iso_date"}}

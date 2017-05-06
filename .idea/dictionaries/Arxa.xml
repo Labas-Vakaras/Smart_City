@@ -1,6 +1,9 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Arxa">
     <words>
+      <w>arxa</w>
+      <w>bson</w>
+      <w>fstream</w>
       <w>mongod</w>
       <w>mongoexport</w>
       <w>mongoimport</w>

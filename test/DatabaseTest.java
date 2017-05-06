@@ -1,22 +1,18 @@
 
 import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
-import freemarker.template.Configuration;
-import labasvakaras.smartcity.Configurator;
-import org.bson.Document;
-import org.junit.*;
-
-import javax.print.Doc;
-import java.io.*;
-import java.util.List;
+        import com.mongodb.client.MongoCollection;
+        import com.mongodb.client.MongoDatabase;
+        import com.mongodb.util.JSON;
+        import labasvakaras.smartcity.Configurator;
+        import org.bson.Document;
+        import org.junit.*;
+        import java.io.*;
 
 /**
  * Created by Arxa on 6/5/2017.
  */
 
-public class CityIdemDAOTest
+public class DatabaseTest
 {
     private static MongoClient mongoClient;
     private static MongoDatabase database;
@@ -37,6 +33,42 @@ public class CityIdemDAOTest
 
     @Before
     public void beforeTest() {
+        importJSON();
+    }
+
+    @After
+    public void afterTest() {
+        collection.drop();
+    }
+
+    @Test
+    public void testNumberOfDocuments()
+    {
+        Assert.assertTrue(collection.count() == 4);
+    }
+
+    @Test
+    public void testDocumentDeletion()
+    {
+        Document criteria = new Document();
+        criteria.append("type","lamp4");
+        collection.deleteOne(criteria);
+        Assert.assertTrue(collection.count() == 3);
+        BasicDBObject doc = collection.find(criteria).first();
+        Assert.assertTrue(doc == null);
+    }
+
+    @Test
+    public void testDocumentAdded()
+    {
+        BasicDBObject criteria = new BasicDBObject();
+        criteria.append("test","test");
+        collection.insertOne(criteria);
+        Assert.assertTrue(collection.count() == 5);
+    }
+
+    public static void importJSON()
+    {
         FileInputStream fstream = null;
         try {
             fstream = new FileInputStream("C:\\Users\\Arxa\\Desktop\\Smart_City\\test\\resources\\city_items_test.json");
@@ -63,16 +95,5 @@ public class CityIdemDAOTest
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @After
-    public void afterTest() {
-        collection.drop();
-    }
-
-    @Test
-    public void testNumberOfDocuments()
-    {
-        Assert.assertTrue(collection.count() == 5);
     }
 }

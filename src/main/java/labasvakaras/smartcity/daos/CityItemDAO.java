@@ -2,13 +2,18 @@ package labasvakaras.smartcity.daos;
 
 ;import com.mongodb.BasicDBObject;
 import com.mongodb.DuplicateKeyException;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.util.JSON;
 import labasvakaras.smartcity.Configurator;
 import labasvakaras.smartcity.entities.CityItem;
-import netscape.javascript.JSObject;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.*;
+import java.util.Date;
 
 /**
  * Created by Arxa on 6/5/2017.
@@ -18,15 +23,21 @@ public class CityItemDAO
 {
     private static final String COLLECTION = "city_items";
 
-
-    public static String insertCityItem(String type, String location_x, String location_y, String description)
+    /**
+     *
+     * @param cityItem Wrapper object for JSON values
+     * @return id of inserted document
+     */
+    public static String insertCityItem(CityItem cityItem)
     {
         ObjectId id = new ObjectId();
         Document post = new Document();
         post.put("_id",id);
-        post.put("type",type);
-        post.put("location",new Document("x",location_x).append("y",location_y));
-        post.put("description",description);
+        post.put("type", Integer.toString(cityItem.getType()));
+        post.put("location",new Document("x",String.valueOf(cityItem.getLongitude())).append("y",String.valueOf(cityItem.getLatitude())));
+        post.put("report",new Document("priority",cityItem.getPriority()).append("comment",cityItem.getComment()).
+                    append("resolved",String.valueOf(cityItem.isResolved())).append("report_date",cityItem.getReport_date().getTime()).
+                            append("resolve_date",cityItem.getResolve_date().getTime()));
         MongoCollection<Document> collection = Configurator.INSTANCE.getDatabase().getCollection(COLLECTION);
         try {
             collection.insertOne(post);
@@ -58,9 +69,20 @@ public class CityItemDAO
 
         builder.id(json.getString("id"));
         builder.type(json.getInt("type"));
-        builder.longitude(json.getDouble("x"));
-        builder.latitude(json.getDouble("y"));
+
+        JSONArray location = json.getJSONArray("location");
+        builder.longitude(location.getDouble(0));
+        builder.latitude(location.getDouble(1));
+
+        JSONArray report = json.getJSONArray("report");
+        builder.priority(report.getString(0));
+        builder.comment(report.getString(1));
+        builder.resolved(report.getBoolean(2));
+        builder.report_date(new Date(report.getLong(3)));
+        builder.resolve_date(new Date(report.getLong(4)));
         // TODO Add Description
         return builder.build();
     }
+
+
 }

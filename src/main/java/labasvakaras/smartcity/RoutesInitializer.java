@@ -5,6 +5,7 @@ import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.Writer;
 import labasvakaras.smartcity.daos.CityItemDAO;
+import labasvakaras.smartcity.entities.CityItem;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
 import labasvakaras.smartcity.routes.QRGeneratorRoute;
 import org.json.JSONObject;
@@ -53,21 +54,14 @@ public class RoutesInitializer {
         post(new Route("insert_item") {
             @Override
             public Object handle(Request rqst, Response rspns) {
-//                CityItem.Builder builder = new CityItem.Builder();
-//                builder.type(Integer.parseInt(rqst.queryParams("type")));
-//                builder.longitude(Double.parseDouble(rqst.queryParams("longitude")));
-//                builder.latitude(Double.parseDouble(rqst.queryParams("latitude")));
+                CityItem.Builder builder = new CityItem.Builder();
+                builder.type(Integer.parseInt(rqst.queryParams("type")));
+                // TODO add description to frontend
+                builder.longitude(Double.parseDouble(rqst.queryParams("longitude")));
+                builder.latitude(Double.parseDouble(rqst.queryParams("latitude")));
+                builder.description(" ");
 
-                String type = rqst.queryParams("type");
-                String longitude = rqst.queryParams("longitude");
-                String latitude = rqst.queryParams("latitude");
-                String description = rqst.queryParams("description");
-
-                String id = CityItemDAO.insertCityItem(
-                        type != null ? type : "0",
-                        longitude != null ? longitude : "0",
-                        latitude != null ? latitude : "0",
-                        description != null ? description : "");
+                String id = CityItemDAO.insertCityItem(builder.build());
                 
                 if(id.equals("-1")) {
                     return "{\"success\": false}";

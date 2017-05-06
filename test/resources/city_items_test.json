@@ -1,5 +1,4 @@
-{"type":"lamp","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken"}
-{"type":"bin","location":{"x":41.054076,"y":23.547783},"description":"bin is on fire"}
-{"type":"lights","location":{"x":41.045076,"y":23.547873},"description":"No lights here"}
-{"type":"lamp","location":{"x":71.087076,"y":43.547653},"description":"Lamp is smashed"}
-{"type":"traffic_light","location":{"x":41.087076,"y":23.547653},"description":"Always red"}
+{"type":"lamp1","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken", "report": {"priority":"high", "comment":"This is a comment", "resolved":"true", "report_date":1494105780, "resolve_date":5314534453}}
+{"type":"lamp2","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken", "report": {"priority":"high", "comment":"This is a comment", "resolved":"true", "report_date":1494105680, "resolve_date":1494105380}}
+{"type":"lamp3","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken", "report": {"priority":"high", "comment":"This is a comment", "resolved":"true", "report_date":1494105580, "resolve_date":1494105980}}
+{"type":"lamp4","location":{"x":41.087076,"y":23.547653},"description":"Lamp is broken", "report": {"priority":"high", "comment":"This is a comment", "resolved":"true", "report_date":1494105380, "resolve_date":1494105080}}
