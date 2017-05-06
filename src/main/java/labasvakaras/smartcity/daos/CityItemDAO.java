@@ -7,6 +7,7 @@ import labasvakaras.smartcity.Configurator;
 import labasvakaras.smartcity.entities.CityItem;
 import netscape.javascript.JSObject;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.json.JSONObject;
 
 /**
@@ -18,19 +19,21 @@ public class CityItemDAO
     private static final String COLLECTION = "city_items";
 
 
-    public static boolean insertCityItem(String type, String location_x, String location_y, String description)
+    public static String insertCityItem(String type, String location_x, String location_y, String description)
     {
+        ObjectId id = new ObjectId();
         Document post = new Document();
+        post.put("_id",id);
         post.put("type",type);
         post.put("location",new Document("x",location_x).append("y",location_y));
         post.put("description",description);
         MongoCollection<Document> collection = Configurator.INSTANCE.getDatabase().getCollection(COLLECTION);
         try {
             collection.insertOne(post);
-            return true;
+            return id.toString();
         } catch (DuplicateKeyException e) {
             e.printStackTrace();
-            return false;
+            return "-1";
         }
     }
 
