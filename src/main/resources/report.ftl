@@ -87,7 +87,8 @@
                 <div class="col-md-6">
                   <h2>Details</h2>
                   <p>id: ${id}</p>
-                  <p>type: not implemented yet</p>
+                  <p>type: ${type}</p>
+                  <p>description: ${description}</p>
                 </div>
                 <div class="col-md-6">
                   <div id="map" style="width:100%;height:300px">
@@ -104,7 +105,7 @@
                         <option value="2">Medium</option>
                         <option value="3">High</option>
                       </select>
-                      <small id="priorityHelp" class="form-text text-muted">Low -> should be condisdered, Medium -> check/resolve in 1-2 days, High -> Life in danger</small>
+                      <small id="priorityHelp" class="form-text text-muted">Low -> should be consdidered, Medium -> check/resolve in 1-2 days, High -> Life in danger</small>
                     </div>
                     <div class="form-group">
                       <label for="comments">Comments</label>
@@ -151,7 +152,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-             var marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(${lat}, ${lng}),
                 map: map,
                 title: 'Item'
