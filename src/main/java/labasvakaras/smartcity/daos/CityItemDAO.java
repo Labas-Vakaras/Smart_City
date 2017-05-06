@@ -62,24 +62,24 @@ public class CityItemDAO
     {
         MongoCollection<BasicDBObject> collection = Configurator.INSTANCE.getDatabase().getCollection(COLLECTION,BasicDBObject.class);
         BasicDBObject query = new BasicDBObject();
-        query.append("_id",id);
+        query.append("_id",new ObjectId(id));
         BasicDBObject result = collection.find(query).first();
         JSONObject json = new JSONObject(result.toJson());
         CityItem.Builder builder = new CityItem.Builder();
 
-        builder.id(json.getString("id"));
+        builder.id(id);
         builder.type(json.getInt("type"));
 
-        JSONArray location = json.getJSONArray("location");
-        builder.longitude(location.getDouble(0));
-        builder.latitude(location.getDouble(1));
+        JSONObject location = json.getJSONObject("location");
+        builder.longitude(location.getDouble("x"));
+        builder.latitude(location.getDouble("y"));
 
-        JSONArray report = json.getJSONArray("report");
-        builder.priority(report.getString(0));
-        builder.comment(report.getString(1));
-        builder.resolved(report.getBoolean(2));
-        builder.report_date(new Date(report.getLong(3)));
-        builder.resolve_date(new Date(report.getLong(4)));
+//        JSONObject report = json.getJSONObject("report");
+//        builder.priority(report.getString(0));
+//        builder.comment(report.getString(1));
+//        builder.resolved(report.getBoolean(2));
+//        builder.report_date(new Date(report.getLong(3)));
+//        builder.resolve_date(new Date(report.getLong(4)));
         // TODO Add Description
         return builder.build();
     }

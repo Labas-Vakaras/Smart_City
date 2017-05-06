@@ -84,8 +84,12 @@ public class RoutesInitializer {
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 String itemId = request.queryParams("id");
                 
+                CityItem cityItem = CityItemDAO.getCityItem(itemId);
+                
                 SimpleHash data = new SimpleHash();
                 data.put("id", itemId);
+                data.put("lat", cityItem.getLatitude());
+                data.put("lng", cityItem.getLongitude());
                 
                 template.process(data, writer);
             }

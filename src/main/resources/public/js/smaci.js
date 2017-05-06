@@ -1,27 +1,27 @@
-(function(window, document, $, undefined){
-  'use strict';
+(function (window, document, $, undefined) {
 
-  $("#insert-form").on( "submit", function( event ) {
-    event.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: "/insert_item",
-      data: $( this ).serialize(),
-      cache: false,
-      success: function(resp) {
-        var jsonResponse = JSON.parse(resp);
+    'use strict';
 
-        if(jsonResponse.success === false) {
-          alert('Something went wrong');
-          return
-        }
+    $("#insert-form").on("submit", function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/insert_item",
+            data: $(this).serialize(),
+            cache: false,
+            success: function (resp) {
+                var jsonResponse = JSON.parse(resp);
 
-        $('#insert-form').toggleClass('hidden');
-        $('#download-qr-link').attr('href', jsonResponse.data.generate_link);
-        $('.download-container').toggleClass('hidden');
-      }
+                if (jsonResponse.success === false) {
+                    alert('Something went wrong');
+                    return;
+                }
+
+                $('#insert-form').toggleClass('hidden');
+                $('#download-qr-link').attr('href', jsonResponse.data.generate_link);
+                $('.download-container').toggleClass('hidden');
+            }
+        });
     });
-  });
-
 
 })(window, document, jQuery);

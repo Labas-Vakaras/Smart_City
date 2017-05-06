@@ -90,7 +90,7 @@
                   <p>type: not implemented yet</p>
                 </div>
                 <div class="col-md-6">
-                  <p>Google maps placeholder</p>
+                  <div id="map" style="width:100%;height:300px">
                 </div>
               </div>
               <hr/>
@@ -142,7 +142,25 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
+    
+    <script>
+        function initMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(${lat}, ${lng}),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+             var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(${lat}, ${lng}),
+                map: map,
+                title: 'Item'
+            });
+        }
+    </script>
 
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99K2u7AtDby-uVfuePRLMd4YxgK0oD4k&callback=initMap"></script>
 </body>
 
 </html>
