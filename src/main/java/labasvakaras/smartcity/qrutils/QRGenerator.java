@@ -24,7 +24,7 @@ public class QRGenerator {
      * The base URL path where the platform is running
      * Used on creating QR links
      */
-    public final static String PLATFORM_BASE_URL = "http://localhost:8082";
+    public final static String PLATFORM_BASE_URL = "http://155.254.33.123:8082";
     
     /**
      * QR images are rectangular
