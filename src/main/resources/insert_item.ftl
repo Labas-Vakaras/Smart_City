@@ -79,6 +79,10 @@
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
+                  <div class="text-center download-container hidden">
+                    <h2>Follow the link below to get your QR code</h2>
+                    <a id="download-qr-link" class="btn btn-primary" href="">Download QR</a>
+                  </div>
                   <form id="insert-form" action="insert_item" method="POST">
                     <div class="form-group">
                       <label for="longitude">Longitude:</label>
@@ -127,13 +131,13 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- SmaCi custom JavaScript -->
-    <script src="/js/smaci.js"></script>
+    <script src="js/smaci.js"></script>
 
 </body>
 

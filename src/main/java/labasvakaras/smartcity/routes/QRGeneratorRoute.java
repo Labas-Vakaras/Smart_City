@@ -1,11 +1,13 @@
 package labasvakaras.smartcity.routes;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletResponse;
+import labasvakaras.smartcity.qrutils.QRGenerator;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -23,14 +25,15 @@ public class QRGeneratorRoute extends Route {
     
     @Override
     public Object handle(Request rqst, Response rspns) {
-        String id = rqst.queryParams("id");
-        System.out.println(id);
-
         HttpServletResponse raw = rspns.raw();
         rspns.header("Content-Disposition", "attachment; filename=image.png");
         rspns.type("application/force-download");
         try {
-            Path path = Paths.get("qr.png");
+            String id = rqst.queryParams("id");
+            QRGenerator qrGenerator = new QRGenerator(id);
+            String qrImagePath = qrGenerator.generate();
+            
+            Path path = Paths.get(qrImagePath);
             byte[] data = Files.readAllBytes(path);
             raw.getOutputStream().write(data);
             raw.getOutputStream().flush();

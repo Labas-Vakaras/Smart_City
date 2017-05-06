@@ -24,7 +24,7 @@ public class QRGenerator {
      * The base URL path where the platform is running
      * Used on creating QR links
      */
-    public final static String PLATFORM_BASE_URL = "http://localhost:4567";
+    public final static String PLATFORM_BASE_URL = "http://localhost:8082";
     
     /**
      * QR images are rectangular
@@ -38,14 +38,25 @@ public class QRGenerator {
         this.cityItemId = cityItemId;
     }
     
-    public void generate() throws Exception {
-        String contentText = PLATFORM_BASE_URL + "/item/" + cityItemId;
+    /**
+     * Generates QR from the given ID
+     * 
+     * @return Returns the temp path of the generated QR image
+     * @throws Exception 
+     */
+    public String generate() throws Exception {
+        String contentText = PLATFORM_BASE_URL + "/item/report?id=" + cityItemId;
         
-        String filePath = "sample/qr.png";
+        File qrImagePath = File.createTempFile("smaci", ".png");
+        qrImagePath.deleteOnExit();
+        
+        String filePath = qrImagePath.getAbsolutePath();
         String fileType = "png";
         File qrFile = new File(filePath);
         createQRImage(qrFile, contentText, QR_SIZE, fileType);
         System.out.println("DONE");
+        
+        return filePath;
     }
 
     private static void createQRImage(File qrFile, String qrCodeText, int size,
