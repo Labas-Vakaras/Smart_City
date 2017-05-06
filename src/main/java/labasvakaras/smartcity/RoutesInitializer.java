@@ -7,6 +7,7 @@ import java.io.Writer;
 import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
 import labasvakaras.smartcity.routes.QRGeneratorRoute;
+import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -62,14 +63,23 @@ public class RoutesInitializer {
                 String latitude = rqst.queryParams("latitude");
                 String description = rqst.queryParams("description");
 
-                boolean result = CityItemDAO.insertCityItem(
+                String id = CityItemDAO.insertCityItem(
                         type != null ? type : "0",
                         longitude != null ? longitude : "0",
                         latitude != null ? latitude : "0",
                         description != null ? description : "");
                 
-                return String.format("{\"success\": %s}",
-                        result ? "true" : "false");
+                if(id.equals("-1")) {
+                    return "{\"success\": false}";
+                }
+                
+                JSONObject jsonDataResponse = new JSONObject();
+                jsonDataResponse.put("generate_link", "/download_qr?id="+id);
+                JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("success", true);
+                jsonResponse.put("data", jsonDataResponse);
+                
+                return jsonResponse.toString();
             }
         });
     }

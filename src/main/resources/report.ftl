@@ -96,6 +96,9 @@
               <hr/>
               <div class="row">
                 <div class="col-xs-12">
+                  <div class="text-center download-container hidden">
+                    <a id="download-qr-link" href=""></a>
+                  </div>
                   <form action="insert_item" method="POST">
                     <div class="form-group">
                       <label for="priority">Priority:</label>

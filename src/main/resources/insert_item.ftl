@@ -79,7 +79,7 @@
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
-                  <form action="insert_item" method="POST">
+                  <form id="insert-form" action="insert_item" method="POST">
                     <div class="form-group">
                       <label for="longitude">Longitude:</label>
                       <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Enter longitude">
@@ -127,10 +127,13 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- SmaCi custom JavaScript -->
+    <script src="/js/smaci.js"></script>
 
 </body>
 
