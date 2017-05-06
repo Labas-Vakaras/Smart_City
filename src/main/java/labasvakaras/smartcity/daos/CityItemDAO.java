@@ -1,9 +1,8 @@
-package daos;
+package labasvakaras.smartcity.daos;
 
 ;import com.mongodb.BasicDBObject;
 import com.mongodb.DuplicateKeyException;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import labasvakaras.smartcity.Configurator;
 import org.bson.Document;
 
