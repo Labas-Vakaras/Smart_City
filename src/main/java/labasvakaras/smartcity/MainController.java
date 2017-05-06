@@ -10,7 +10,7 @@ import spark.Spark;
 public class MainController {
 
     private final Configuration cfg;
-
+    
     public MainController() {
         this.cfg = Configurator.INSTANCE.getConfiguration();
 
@@ -29,7 +29,7 @@ public class MainController {
         }
     }
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new MainController();
     }
 }

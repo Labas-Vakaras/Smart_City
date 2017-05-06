@@ -6,8 +6,8 @@ int writeBlock(int blockNumber, byte arrayAddress[])
   int largestModulo4Number=blockNumber/4*4;
   int trailerBlock=largestModulo4Number+3;//determine trailer block for the sector
   if (blockNumber > 2 && (blockNumber+1)%4 == 0){Serial.print(blockNumber);Serial.println(" is a trailer block:");return 2;}//block number is a trailer block (modulo 4); quit and send error code 2
-  Serial.print(blockNumber);
-  Serial.println(" is a data block:");
+  //Serial.print(blockNumber);
+  //Serial.println(" is a data block:");
   
   /** authentication of the desired block for access **/
   byte status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, trailerBlock, &key, &(mfrc522.uid));
@@ -35,7 +35,7 @@ int writeBlock(int blockNumber, byte arrayAddress[])
    Serial.println(mfrc522.GetStatusCodeName(status));
    return 4;//return "4" as error message
   }
-  Serial.println("block was written");
+  //Serial.println("block was written");
 }
 
 

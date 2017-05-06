@@ -34,7 +34,7 @@ void setup() {
   Serial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
-  Serial.println("Scan a card");
+  //Serial.println("Scan a card");
   
   // Prepare the security key for the read and write functions - all six key bytes are set to 0xFF from the factory.
   // Since the cards in the kit are new and the keys were never defined, they are 0xFF
@@ -59,7 +59,7 @@ void loop()
 		return;//if it returns a '0' something went wrong and we return to the start of the loop
 	}
 
-  Serial.println("card selected");
+  //Serial.println("card selected");
 
   /** Writing and reading on the card **/
 
