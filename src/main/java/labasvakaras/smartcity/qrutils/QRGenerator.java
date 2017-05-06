@@ -1,4 +1,4 @@
-package labasvakaras.smartcity.qr;
+package labasvakaras.smartcity.qrutils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -28,7 +28,7 @@ public class QRGenerator {
     
     /**
      * QR images are rectangular
-     * this size represents the rectangle dimesion
+     * this size represents the rectangle dimension
      */
     protected final static int QR_SIZE = 125;
     
@@ -41,7 +41,7 @@ public class QRGenerator {
     public void generate() throws Exception {
         String contentText = PLATFORM_BASE_URL + "/item/" + cityItemId;
         
-        String filePath = "qr.png";
+        String filePath = "sample/qr.png";
         String fileType = "png";
         File qrFile = new File(filePath);
         createQRImage(qrFile, contentText, QR_SIZE, fileType);

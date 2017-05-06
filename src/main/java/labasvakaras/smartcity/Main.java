@@ -16,7 +16,7 @@ public class Main {
         /**
          * Produce QR image by resolve the given item id GET parameter
          */
-        get(new QRGeneratorRoute("produce_qr"));
+        get(new QRGeneratorRoute("download_qr"));
     }
 
     /**
