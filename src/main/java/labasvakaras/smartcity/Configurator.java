@@ -2,8 +2,10 @@ package labasvakaras.smartcity;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import freemarker.template.Configuration;
+import org.bson.Document;
 import static spark.Spark.setPort;
 
 /**
@@ -46,5 +48,9 @@ public enum Configurator {
 
     public MongoDatabase getDatabase() {
         return database;
+    }
+    
+    public MongoCollection<Document> getCollection(String tableName) {
+        return database.getCollection(tableName);
     }
 }
