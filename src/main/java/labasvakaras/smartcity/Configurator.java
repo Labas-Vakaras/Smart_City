@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import freemarker.template.Configuration;
+import static spark.Spark.setPort;
 
 /**
  * Configuration must be:
@@ -21,6 +22,7 @@ public enum Configurator {
 
     private final static String MONGO_URI = "mongodb://localhost";
     private final static String MONGO_DB = "smart_city";
+    public final static int PORT = 8082;
     
     private final Configuration cfg;
     private final MongoClient mongoClient;
