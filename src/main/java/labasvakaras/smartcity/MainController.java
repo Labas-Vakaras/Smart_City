@@ -15,6 +15,7 @@ public class MainController {
         this.cfg = Configurator.INSTANCE.getConfiguration();
 
         Spark.setPort(Configurator.PORT);
+        Spark.staticFileLocation("/public");
         
         initializeRoutes();
     }
