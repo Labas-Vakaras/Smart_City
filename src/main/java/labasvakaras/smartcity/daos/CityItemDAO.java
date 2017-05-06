@@ -4,7 +4,10 @@ package labasvakaras.smartcity.daos;
 import com.mongodb.DuplicateKeyException;
 import com.mongodb.client.MongoCollection;
 import labasvakaras.smartcity.Configurator;
+import labasvakaras.smartcity.entities.CityItem;
+import netscape.javascript.JSObject;
 import org.bson.Document;
+import org.json.JSONObject;
 
 /**
  * Created by Arxa on 6/5/2017.
@@ -39,5 +42,22 @@ public class CityItemDAO
         query.append("_id",id);
         BasicDBObject result = collection.find(query).first();
         return !result.isEmpty();
+    }
+
+    public static CityItem getCityItem(String id)
+    {
+        MongoCollection<BasicDBObject> collection = Configurator.INSTANCE.getDatabase().getCollection(COLLECTION,BasicDBObject.class);
+        BasicDBObject query = new BasicDBObject();
+        query.append("_id",id);
+        BasicDBObject result = collection.find(query).first();
+        JSONObject json = new JSONObject(result.toJson());
+        CityItem.Builder builder = new CityItem.Builder();
+
+        builder.id(json.getString("id"));
+        builder.type(json.getInt("type"));
+        builder.longitude(json.getDouble("x"));
+        builder.latitude(json.getDouble("y"));
+        // TODO Add Description
+        return builder.build();
     }
 }
