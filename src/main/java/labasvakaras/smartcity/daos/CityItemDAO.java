@@ -1,8 +1,6 @@
 package labasvakaras.smartcity.daos;
 
-;import com.mongodb.BasicDBObject;
-import com.mongodb.DuplicateKeyException;
-import com.mongodb.MongoException;
+;import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.util.JSON;
 import labasvakaras.smartcity.Configurator;
@@ -69,20 +67,32 @@ public class CityItemDAO
 
         builder.id(id);
         builder.type(json.getInt("type"));
+        builder.description(json.getString("description"));
 
         JSONObject location = json.getJSONObject("location");
         builder.longitude(location.getDouble("x"));
         builder.latitude(location.getDouble("y"));
 
-//        JSONObject report = json.getJSONObject("report");
-//        builder.priority(report.getString(0));
-//        builder.comment(report.getString(1));
-//        builder.resolved(report.getBoolean(2));
-//        builder.report_date(new Date(report.getLong(3)));
-//        builder.resolve_date(new Date(report.getLong(4)));
-        // TODO Add Description
+        JSONObject report = json.getJSONObject("report");
+        builder.priority(report.getString("priority"));
+        builder.comment(report.getString("comment"));
+        builder.resolved(report.getBoolean("resolved"));
+        builder.report_date(new Date(report.getLong("report_date")));
+        builder.resolve_date(new Date(report.getLong("resolve_date")));
+
         return builder.build();
     }
 
-
+    public static void insertReport(CityItem cityItem)
+    {
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.append("$set", new BasicDBObject().append("report.priority",cityItem.getComment()).
+                    append("report.comment",cityItem.getComment()).append("report.resolved",cityItem.isResolved()).
+                            append("report.report_date",cityItem.getReport_date().getTime()).
+                                    append("report.resolve_date",cityItem.getResolve_date().getTime()));
+        BasicDBObject searchQuery = new BasicDBObject().append("_id", cityItem.getId());
+        DB db = (DB) Configurator.INSTANCE.getDatabase();
+        DBCollection collection = db.getCollection(COLLECTION);
+        collection.update(searchQuery, newDocument); //TODO check if succeeds
+    }
 }
