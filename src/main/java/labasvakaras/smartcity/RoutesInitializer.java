@@ -22,6 +22,7 @@ public class RoutesInitializer {
     public void initialize() throws IOException {
         initIndexRoute();
         initInsertItemRoute();
+        initReportRoute();
         
         get(new QRGeneratorRoute("download_qr"));
     }
@@ -67,8 +68,22 @@ public class RoutesInitializer {
                         latitude != null ? latitude : "0",
                         description != null ? description : "");
                 
-                return String.format("{success: %s}",
+                return String.format("{\"success\": %s}",
                         result ? "true" : "false");
+            }
+        });
+    }
+    
+    protected void initReportRoute() throws IOException {
+        get(new FreemarkerBasedRoute("/item/report", "report.ftl") {
+            @Override
+            protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
+                String itemId = request.queryParams("id");
+                
+                SimpleHash data = new SimpleHash();
+                data.put("id", itemId);
+                
+                template.process(data, writer);
             }
         });
     }

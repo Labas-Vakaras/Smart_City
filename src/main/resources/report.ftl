@@ -12,10 +12,10 @@
     <title>Insert | SmaCi</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/smaci.css" rel="stylesheet">
+    <link href="/css/smaci.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -79,25 +79,36 @@
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
+                  <h1>Report</h1>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-md-6">
+                  <h2>Details</h2>
+                  <p>id: ${id}</p>
+                  <p>type: not implemented yet</p>
+                </div>
+                <div class="col-md-6">
+                  <p>Google maps placeholder</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-xs-12">
                   <form action="insert_item" method="POST">
                     <div class="form-group">
-                      <label for="longitude">Longitude:</label>
-                      <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Enter longitude">
-                    </div>
-                    <div class="form-group">
-                      <label for="latitude">Latitude:</label>
-                      <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter latitude">
-                    </div>
-                    <div class="form-group">
-                      <label for="type">Item Type:</label>
-                      <select class="form-control" id="type" name="type" >
-                        <option value="1">Street Light</option>
-                        <option value="2">Traffic Light</option>
+                      <label for="priority">Priority:</label>
+                      <select class="form-control" id="type" name="priority" >
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
                       </select>
+                      <small id="priorityHelp" class="form-text text-muted">Low -> should be condisdered, Medium -> check/resolve in 1-2 days, High -> Life in danger</small>
                     </div>
                     <div class="form-group">
-                      <label for="description">Description</label>
-                      <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                      <label for="comments">Comments</label>
+                      <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
@@ -127,10 +138,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
 </body>
 
