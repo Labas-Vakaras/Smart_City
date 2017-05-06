@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SmaCi</title>
+    <title>Insert | SmaCi</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SmaCi</a>
+                <a class="navbar-brand" href="/">SmaCi</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -78,33 +78,23 @@
 
             <div class="col-md-9">
               <div class="row">
-                <div class="col-xs-12">
-                  <h2 class="text-center">SmaCi is an online platform aiming to automate and assist in every day city tasks. Report instantly a malfunction</h2>
-                </div>
-              </div>
-              <hr/>
-              <div class="row showcase">
-                <div class="col-sm-4 text-center">
-                  <img class="img-responsive" src="images/QR-demo.png" />
-                  <h1>QR</h1>
-                  <h3>Why to use QRs</h3>
-                  <p>Usable scenarios to demonstrate the importance of our platform</p>
-                  <a href="#" class="btn btn-primary">more</a>
-                </div>
-                <div class="col-sm-4 text-center">
-                  <img class="img-responsive" src="images/NFC-RFID.png" />
-                  <h1>NFC &amp; RFID</h1>
-                  <h3>Why and how to use</h3>
-                  <p>QRs get destroyed... NOT our problem, check this out</p>
-                  <a href="#" class="btn btn-primary">more</a>
-                </div>
-                <div class="col-sm-4 text-center">
-                  <img class="img-responsive" src="images/API.png" />
-                  <h1>API</h1>
-                  <h3>Access our data</h3>
-                  <p>Gain access to our database, using a simple but robust API</p>
-                  <a href="#" class="btn btn-primary">more</a>
-                </div>
+                <form action="insert_item" method="POST">
+                  <div class="form-group">
+                    <label for="longitude">Longitude:</label>
+                    <input type="text" class="form-control" id="longitude" placeholder="Enter longitude">
+                  </div>
+                  <div class="form-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" class="form-control" id="latitude" placeholder="Enter latitude">
+                  </div>
+                  <div class="form-group">
+                    <label for="type">Item Type:</label>
+                    <select class="form-control" id="type">
+                      <option value="1">Street Light</option>
+                      <option value="2">Traffic Light</option>
+                    </select>
+                  </div>
+                </form>
               </div>
             </div>
 
