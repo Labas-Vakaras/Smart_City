@@ -29,7 +29,7 @@ public enum Configurator {
     private final Configuration cfg;
     private final MongoClient mongoClient;
     private final MongoDatabase database;
-    
+
     private Configurator() {
         cfg = new Configuration();
         cfg.setClassForTemplateLoading(MainController.class, "/");
@@ -48,9 +48,5 @@ public enum Configurator {
 
     public MongoDatabase getDatabase() {
         return database;
-    }
-    
-    public MongoCollection<Document> getCollection(String tableName) {
-        return database.getCollection(tableName);
     }
 }
