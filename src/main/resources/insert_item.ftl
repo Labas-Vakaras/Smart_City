@@ -81,19 +81,24 @@
                 <form action="insert_item" method="POST">
                   <div class="form-group">
                     <label for="longitude">Longitude:</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="Enter longitude">
+                    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Enter longitude">
                   </div>
                   <div class="form-group">
                     <label for="latitude">Latitude:</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="Enter latitude">
+                    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Enter latitude">
                   </div>
                   <div class="form-group">
                     <label for="type">Item Type:</label>
-                    <select class="form-control" id="type">
+                    <select class="form-control" id="type" name="type" >
                       <option value="1">Street Light</option>
                       <option value="2">Traffic Light</option>
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
             </div>
