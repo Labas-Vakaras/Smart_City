@@ -6,6 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 import labasvakaras.smartcity.Configurator;
+import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.entities.CityItem;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 import org.junit.*;
 
 import java.io.*;
+import java.util.Date;
 
 /**
  * Created by Arxa on 6/5/2017.
@@ -51,10 +53,36 @@ public class CityItemDAOTest
     @Test
     public void insertCityItem_Test()
     {
-        CityItem.Builder builder = new CityItem.Builder();
         CityItem cityItem = new CityItem();
+        CityItem.Builder builder = new CityItem.Builder();
+        builder.description("test");
+        builder.type(15);
+        builder.priority("test");
+        builder.comment("test");
+        builder.resolve_date(new Date());
+        builder.report_date(new Date());
+        builder.latitude(12.131);
+        builder.longitude(16.1334);
+        builder.resolved(false);
+        cityItem = builder.build();
+        Assert.assertTrue("Initial documents should be 4",collection.count() == 4);
+        String id = CityItemDAO.insertCityItem(cityItem);
+        Assert.assertTrue("Returned id should not be a negative",!id.equals("-1"));
+    }
 
+    @Test
+    public void cityItemExistsTest()
+    {
+        BasicDBObject query1 = new BasicDBObject();
+        query1.append("type","lamp4");
+        BasicDBObject doc1 = collection.find(query1).first();
+        BasicDBObject result1 = collection.find(doc1).first();
+        Assert.assertTrue("Document should exist",result1 != null);
 
+        BasicDBObject query2 = new BasicDBObject();
+        query2.append("type","test"); // not type as test
+        result1 = collection.find(query2).first();
+        Assert.assertTrue("Document should not exist",result1 == null);
     }
 
     public static void importJSON()

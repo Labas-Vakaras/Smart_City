@@ -53,9 +53,9 @@ public class DatabaseTest
         Document criteria = new Document();
         criteria.append("type","lamp4");
         collection.deleteOne(criteria);
-        Assert.assertTrue(collection.count() == 3);
+        Assert.assertTrue("Documents should be 3",collection.count() == 3);
         BasicDBObject doc = collection.find(criteria).first();
-        Assert.assertTrue(doc == null);
+        Assert.assertTrue("Finding the deleted doc should return null",doc == null);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class DatabaseTest
         BasicDBObject criteria = new BasicDBObject();
         criteria.append("test","test");
         collection.insertOne(criteria);
-        Assert.assertTrue(collection.count() == 5);
+        Assert.assertTrue("Documents should be 5",collection.count() == 5);
     }
 
     public static void importJSON()
