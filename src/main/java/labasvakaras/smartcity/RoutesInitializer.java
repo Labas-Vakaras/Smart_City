@@ -88,6 +88,8 @@ public class RoutesInitializer {
                 
                 SimpleHash data = new SimpleHash();
                 data.put("id", itemId);
+                data.put("type", cityItem.getTypeAsString());
+                data.put("description", cityItem.getDescription());
                 data.put("lat", cityItem.getLatitude());
                 data.put("lng", cityItem.getLongitude());
                 

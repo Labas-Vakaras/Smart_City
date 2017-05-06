@@ -13,11 +13,11 @@ public class CityItem {
     private double latitude;
     private int type;
     private String description;
-    private String priority; //TODO change this maybe to enum
+    private String priority;
     private String comment;
     private boolean resolved;
-    private Date report_date;
-    private Date resolve_date;
+    private Date reportDate;
+    private Date resolveDate;
 
     public CityItem() {
     }
@@ -31,11 +31,9 @@ public class CityItem {
         this.priority = b.priority;
         this.comment = b.comment;
         this.resolved = b.resolved;
-        this.report_date = b.report_date;
-        this.resolve_date = b.resolve_date;
+        this.reportDate = b.reportDate;
+        this.resolveDate = b.resolveDate;
     }
-
-
     
     public String getId() {
         return id;
@@ -64,13 +62,20 @@ public class CityItem {
     public int getType() {
         return type;
     }
+    
+    public String getTypeAsString() {
+        String strType = CityItemType.values()[type].toString();
+        strType = strType.replace("_", " ");
+        strType = strType.toLowerCase();
+        return strType;
+    }
 
     public void setType(int type) {
         this.type = type;
     }
 
     public String getDescription() {
-        return description;
+        return description == null ? "" : description;
     }
 
     public void setDescription(String description) {
@@ -102,19 +107,19 @@ public class CityItem {
     }
 
     public Date getReport_date() {
-        return report_date;
+        return reportDate;
     }
 
     public void setReport_date(Date report_date) {
-        this.report_date = report_date;
+        this.reportDate = report_date;
     }
 
     public Date getResolve_date() {
-        return resolve_date;
+        return resolveDate;
     }
 
     public void setResolve_date(Date resolve_date) {
-        this.resolve_date = resolve_date;
+        this.resolveDate = resolve_date;
     }
 
     public static class Builder {
@@ -126,8 +131,8 @@ public class CityItem {
         private String priority; //TODO change this maybe to enum
         private String comment;
         private boolean resolved;
-        private Date report_date;
-        private Date resolve_date;
+        private Date reportDate;
+        private Date resolveDate;
         
         public Builder id(String id) {
             this.id = id;
@@ -170,12 +175,12 @@ public class CityItem {
         }
 
         public Builder report_date(Date report_date) {
-            this.report_date = report_date;
+            this.reportDate = report_date;
             return this;
         }
 
         public Builder resolve_date(Date resolve_date) {
-            this.resolve_date = resolve_date;
+            this.resolveDate = resolve_date;
             return this;
         }
 
