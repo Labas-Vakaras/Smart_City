@@ -24,4 +24,25 @@
         });
     });
 
+    $("#report-form").on("submit", function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/item/report",
+            data: $(this).serialize(),
+            cache: false,
+            success: function (resp) {
+                var jsonResponse = JSON.parse(resp);
+
+                if (jsonResponse.success === false) {
+                    alert('Something went wrong');
+                    return;
+                }
+
+                $('#report-form').toggleClass('hidden');
+                $('#thank-you').toggleClass('hidden');
+            }
+        });
+    });
+
 })(window, document, jQuery);

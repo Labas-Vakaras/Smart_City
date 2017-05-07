@@ -45,10 +45,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="about">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="about#services">Services</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
@@ -68,18 +68,17 @@
             <div class="col-md-3">
                 <p class="lead">SmaCi</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Register Item</a>
-                    <a href="#" class="list-group-item">Download existing QR</a>
-                    <a href="#" class="list-group-item">City Reports</a>
-                    <a href="#" class="list-group-item">Access our Data | API</a>
-                    <a href="#" class="list-group-item">About Us</a>
+                    <a href="/insert" class="list-group-item">Register Item</a>
+                    <a href="/reports" class="list-group-item">City Reports</a>
+                    <a href="/api" class="list-group-item">Access our Data | API</a>
+                    <a href="/about" class="list-group-item">About Us</a>
                 </div>
             </div>
 
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
-                  <h2 class="text-center">SmaCi is an online platform aiming to automate and assist in every day city tasks. Report instantly a malfunction</h2>
+                  <h2 class="text-center">SmaCi is an online platform aiming to automate and assist in every day city tasks, report instantly a malfunction, export valuable statistical data</h2>
                 </div>
               </div>
               <hr/>
@@ -121,7 +120,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; SmaCi 2017</p>
                 </div>
             </div>
         </footer>

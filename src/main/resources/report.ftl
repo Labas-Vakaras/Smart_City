@@ -44,15 +44,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                  <li>
+                      <a href="about">About</a>
+                  </li>
+                  <li>
+                      <a href="about#services">Services</a>
+                  </li>
+                  <li>
+                      <a href="#">Contact</a>
+                  </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -68,11 +68,10 @@
             <div class="col-md-3">
                 <p class="lead">SmaCi</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Register Item</a>
-                    <a href="#" class="list-group-item">Download existing QR</a>
-                    <a href="#" class="list-group-item">City Reports</a>
-                    <a href="#" class="list-group-item">Access our Data | API</a>
-                    <a href="#" class="list-group-item">About Us</a>
+                  <a href="/insert" class="list-group-item">Register Item</a>
+                  <a href="/reports" class="list-group-item">City Reports</a>
+                  <a href="/api" class="list-group-item">Access our Data | API</a>
+                  <a href="/about" class="list-group-item">About Us</a>
                 </div>
             </div>
 
@@ -97,7 +96,10 @@
               <hr/>
               <div class="row">
                 <div class="col-xs-12">
-                  <form action="/item/report" method="POST">
+                  <div id="thank-you" class="text-center hidden">
+                    <h2>We really appriciate your contribution</h2>
+                  </div>
+                  <form action="/item/report" id="report-form" method="POST">
                     <input type="hidden" name="id" value="${id}" />
                     <div class="form-group">
                       <label for="priority">Priority:</label>
@@ -131,7 +133,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; SmaCi 2017</p>
                 </div>
             </div>
         </footer>
@@ -144,7 +146,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-    
+
     <script>
         function initMap() {
             var mapOptions = {
