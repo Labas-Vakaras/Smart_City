@@ -13,6 +13,7 @@ import labasvakaras.smartcity.daos.ReportDAO;
 import labasvakaras.smartcity.entities.CityItem;
 import labasvakaras.smartcity.entities.Report;
 import labasvakaras.smartcity.entities.ReportViewObject;
+import labasvakaras.smartcity.routes.ApiRoutes;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
 import labasvakaras.smartcity.routes.QRGeneratorRoute;
 import org.json.JSONObject;
@@ -33,6 +34,9 @@ public class RoutesInitializer {
         initInsertItemRoute();
         initReportRoute();
         initReportsRoute();
+        
+        ApiRoutes apiRoutes = new ApiRoutes();
+        apiRoutes.initApiRoutes();
         
         get(new QRGeneratorRoute("download_qr"));
     }
@@ -130,7 +134,7 @@ public class RoutesInitializer {
             protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
                 Map<String, Object> input = new HashMap<>();
                 
-                List<ReportViewObject> reports = ReportDAO.findReports();
+                List<ReportViewObject> reports = ReportDAO.findReportsForView();
                 
                 input.put("reports", reports);
                 template.process(input, writer);
