@@ -79,8 +79,9 @@
               <div class="row">
                 <div class="col-xs-12">
                   <h1>About Us</h1>
-                  <p>SmaCi is an online platform which provides a user friendly way to interact with your city. Here you can report problems to the appropriate authorities by scanning a QR barcode of the faulty city component, or just by using your near field communication features (RFID/NFC) of your smartphone</p>
-                  <p>Great example of SmaCi capabillities is also the ability to send signals on traffic lights, which in turn can help people with disabilities cross the roads safely, by prolonging the green light. You only have to scan the QR code, or come closer to the passive RFID tag, which is embeded on the traffic light.</p>
+                  <p>SmaCi is an online platform which provides a user friendly way to interact with your city. Here you can report problems to the appropriate authorities by scanning a QR barcode of the faulty city component, or just by using the near field communication features (RFID/NFC) of your smartphone</p>
+
+                  <p>Great example of SmaCi capabilities is also the ability to send signals on traffic lights, which in turn can help people with disabilities cross the roads safely, by prolonging the green light. You only have to scan the QR code, or come closer to the passive RFID tag, which is embedded on the traffic light.</p>
                 </div>
               </div>
               <hr/>
