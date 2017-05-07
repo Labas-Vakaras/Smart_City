@@ -88,21 +88,18 @@
                   <h1>QR</h1>
                   <h3>Why to use QRs</h3>
                   <p>Usable scenarios to demonstrate the importance of our platform</p>
-                  <a href="#" class="btn btn-primary">more</a>
                 </div>
                 <div class="col-sm-4 text-center">
                   <img class="img-responsive" src="images/NFC-RFID.png" />
                   <h1>NFC &amp; RFID</h1>
                   <h3>Why and how to use</h3>
                   <p>QRs get destroyed... NOT our problem, check this out</p>
-                  <a href="#" class="btn btn-primary">more</a>
                 </div>
                 <div class="col-sm-4 text-center">
                   <img class="img-responsive" src="images/API.png" />
                   <h1>API</h1>
                   <h3>Access our data</h3>
                   <p>Gain access to our database, using a simple but robust API</p>
-                  <a href="#" class="btn btn-primary">more</a>
                 </div>
               </div>
             </div>
