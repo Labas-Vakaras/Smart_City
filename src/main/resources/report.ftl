@@ -70,7 +70,7 @@
                 <div class="list-group">
                   <a href="/insert" class="list-group-item">Register Item</a>
                   <a href="/reports" class="list-group-item">City Reports</a>
-                  <a href="/api" class="list-group-item">Access our Data | API</a>
+                  <a href="/about#api" class="list-group-item">Access our Data | API</a>
                   <a href="/about" class="list-group-item">About Us</a>
                 </div>
             </div>
@@ -146,6 +146,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
+
+    <!-- SmaCi custom JavaScript -->
+    <script src="/js/smaci.js"></script>
 
     <script>
         function initMap() {

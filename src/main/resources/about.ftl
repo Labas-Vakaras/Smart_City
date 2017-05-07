@@ -69,44 +69,37 @@
                 <p class="lead">SmaCi</p>
                 <div class="list-group">
                   <a href="/insert" class="list-group-item">Register Item</a>
-                  <a href="/reports" class="list-group-item active">City Reports</a>
+                  <a href="/reports" class="list-group-item">City Reports</a>
                   <a href="/about#api" class="list-group-item">Access our Data | API</a>
-                  <a href="/about" class="list-group-item">About Us</a>
+                  <a href="/about" class="list-group-item active">About Us</a>
                 </div>
             </div>
 
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
-                  <h1>Reports</h1>
+                  <h1>About Us</h1>
+                  <p>SmaCi is an online platform which provides a user friendly way to interact with your city. Here you can report problems to the appropriate authorities by scanning a QR barcode of the faulty city component, or just by using your near field communication features (RFID/NFC) of your smartphone</p>
+                  <p>Great example of SmaCi capabillities is also the ability to send signals on traffic lights, which in turn can help people with disabilities cross the roads safely, by prolonging the green light. You only have to scan the QR code, or come closer to the passive RFID tag, which is embeded on the traffic light.</p>
                 </div>
               </div>
               <hr/>
-              <hr/>
-              <div class="row">
+              <div class="row" id="services">
                 <div class="col-xs-12">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Item</th>
-                        <th>Resolved</th>
-                        <th>Priority</th>
-                        <th>Submited on</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <#list reports as report>
-                      <tr>
-                        <td>${report.id}</td>
-                        <td>${report.cityItemId}</td>
-                        <td>${report.resolved}</td>
-                        <td>${report.priority}</td>
-                        <td>${report.resolveDate}</td>
-                      </tr>
-                      </#list>
-                    </tbody>
-                  </table>
+                  <h1>Services</h1>
+                  <p>Our platform provides</p>
+                  <ul>
+                    <li>specialized QR generation and RFID setup</li>
+                    <li>Adaptation with traffic light networks</li>
+                    <li>Access to our data, through a user friendly API</li>
+                  </ul>
+                </div>
+              </div>
+              <hr/>
+              <div class="row" id="api">
+                <div class="col-xs-12">
+                  <h1>API</h1>
+                  <p>Our API is still under construction. <a href="/api/reports">Preview reports data</a></p>
                 </div>
               </div>
             </div>
@@ -137,7 +130,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

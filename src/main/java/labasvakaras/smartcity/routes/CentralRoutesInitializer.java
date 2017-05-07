@@ -14,7 +14,8 @@ public class CentralRoutesInitializer extends RoutesInitializer {
             new QRGeneratorRoutes(),
             new CityItemRoutes(),
             new ReportRoutes(),
-            new ApiRoutes()
+            new ApiRoutes(),
+            new GenericRoutes()
         };
         
         for(RoutesInitializer initializer : initializers) {
