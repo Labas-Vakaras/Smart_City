@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
 import labasvakaras.smartcity.daos.CityItemDAO;
+import labasvakaras.smartcity.daos.ReportDAO;
 import labasvakaras.smartcity.entities.CityItem;
 import labasvakaras.smartcity.entities.Report;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
@@ -109,7 +110,7 @@ public class RoutesInitializer {
                         .reportDate(new Date())
                         .resolved(false);
                 
-                CityItemDAO.insertReport(b.build());
+                ReportDAO.insertReport(b.build());
                 
                 JSONObject jsonResult = new JSONObject();
                 jsonResult.put("success", true);

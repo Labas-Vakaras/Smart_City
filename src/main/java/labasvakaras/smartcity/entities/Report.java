@@ -8,7 +8,8 @@ import java.util.Date;
  */
 public class Report {
     
-    private String cityItemID;
+    private String id;
+    private String cityItemId;
     private int priority;
     private String comment;
     private boolean resolved;
@@ -19,7 +20,8 @@ public class Report {
     }
     
     public Report(Builder b) {
-        this.cityItemID = b.cityItemId;
+        this.id = b.id;
+        this.cityItemId = b.cityItemId;
         this.priority = b.priority;
         this.comment = b.comment;
         this.resolved = b.resolved;
@@ -27,12 +29,20 @@ public class Report {
         this.resolveDate = b.resolveDate;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public String getCityItemId() {
-        return cityItemID;
+        return cityItemId;
     }
 
     public void setCityItemID(String cityItemID) {
-        this.cityItemID = cityItemID;
+        this.cityItemId = cityItemID;
     }
     
     public int getPriority() {
@@ -76,12 +86,18 @@ public class Report {
     }
     
     public static class Builder {
+        private String id;
         private String cityItemId;
-        private int priority; //TODO change this maybe to enum
+        private int priority;
         private String comment;
         private boolean resolved;
         private Date reportDate;
         private Date resolveDate;
+        
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
         
         public Builder cityItemId(String cityItemId) {
             this.cityItemId = cityItemId;
