@@ -8,6 +8,7 @@ import com.mongodb.util.JSON;
 import labasvakaras.smartcity.Configurator;
 import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.entities.CityItem;
+import labasvakaras.smartcity.entities.Report;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -54,17 +55,14 @@ public class CityItemDAOTest
     public void insertCityItem_Test()
     {
         CityItem cityItem = new CityItem();
-        CityItem.Builder builder = new CityItem.Builder();
-        builder.description("test");
-        builder.type(15);
-        builder.priority("test");
-        builder.comment("test");
-        builder.resolve_date(new Date());
-        builder.report_date(new Date());
-        builder.latitude(12.131);
-        builder.longitude(16.1334);
-        builder.resolved(false);
-        cityItem = builder.build();
+        CityItem.Builder cBuilder = new CityItem.Builder();
+
+        cBuilder.description("test");
+        cBuilder.type(15);
+        cBuilder.latitude(12.131);
+        cBuilder.longitude(16.1334);
+        cityItem = cBuilder.build();
+
         Assert.assertTrue("Initial documents should be 4",collection.count() == 4);
         String id = CityItemDAO.insertCityItem(cityItem);
         Assert.assertTrue("Returned id should not be a negative",!id.equals("-1"));
@@ -84,6 +82,27 @@ public class CityItemDAOTest
         result1 = collection.find(query2).first();
         Assert.assertTrue("Document should not exist",result1 == null);
     }
+
+    @Test
+    public void insertReportTest()
+    {
+        Report.Builder rBuilder = new Report.Builder();
+        rBuilder.reportDate(new Date());
+        rBuilder.resolveDate(new Date());
+        rBuilder.resolved(true);
+        rBuilder.comment("comment99");
+        rBuilder.priority("high");
+
+        Report report = new Report();
+        report = rBuilder.build();
+        CityItemDAO.insertReport(report);
+
+        BasicDBObject query = new BasicDBObject();
+        query.append("report.comment","comment99");
+        Document result = Configurator.INSTANCE.getDatabase().getCollection("city_items").find().first();
+        Assert.assertTrue("Result should not be null",result != null);
+    }
+
 
     public static void importJSON()
     {
