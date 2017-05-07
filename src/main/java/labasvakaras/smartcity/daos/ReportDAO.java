@@ -47,7 +47,7 @@ public class ReportDAO {
     }
 
     /**
-     * Returns all reports
+     * Returns all reports for view
      * 
      * @return List
      */
@@ -62,12 +62,6 @@ public class ReportDAO {
             @Override
             public void apply(final Document document) {
                 Report.Builder b = new Report.Builder();
-//                b.comment(document.getString("comment"))
-//                        .cityItemId(document.getString("city_item_id"))
-//                        .priority(document.getInteger("priority"))
-//                        .resolved(document.getBoolean("resolved"))
-//                        .reportDate(new Date(document.getLong("report_date")))
-//                        .id(document.getObjectId("_id").toString());
                 DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
                 String reportDate = df.format(new Date(document.getLong("report_date")));
 
