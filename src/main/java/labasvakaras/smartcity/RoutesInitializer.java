@@ -5,10 +5,14 @@ import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.daos.ReportDAO;
 import labasvakaras.smartcity.entities.CityItem;
 import labasvakaras.smartcity.entities.Report;
+import labasvakaras.smartcity.entities.ReportViewObject;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
 import labasvakaras.smartcity.routes.QRGeneratorRoute;
 import org.json.JSONObject;
@@ -28,6 +32,7 @@ public class RoutesInitializer {
         initIndexRoute();
         initInsertItemRoute();
         initReportRoute();
+        initReportsRoute();
         
         get(new QRGeneratorRoute("download_qr"));
     }
@@ -115,6 +120,20 @@ public class RoutesInitializer {
                 JSONObject jsonResult = new JSONObject();
                 jsonResult.put("success", true);
                 return jsonResult.toString();
+            }
+        });
+    }
+    
+    protected void initReportsRoute() throws IOException {
+        get(new FreemarkerBasedRoute("reports", "reports.ftl") {
+            @Override
+            protected void doHandle(Request request, Response response, Writer writer) throws IOException, TemplateException {
+                Map<String, Object> input = new HashMap<>();
+                
+                List<ReportViewObject> reports = ReportDAO.findReports();
+                
+                input.put("reports", reports);
+                template.process(input, writer);
             }
         });
     }

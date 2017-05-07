@@ -4,10 +4,14 @@ import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import labasvakaras.smartcity.Configurator;
 import labasvakaras.smartcity.entities.Report;
+import labasvakaras.smartcity.entities.ReportViewObject;
 import org.bson.Document;
 
 /**
@@ -25,7 +29,7 @@ public class ReportDAO {
      */
     public static void insertReport(Report report) {
         Document newDocument = new Document();
-        newDocument.append("priority", report.getComment())
+        newDocument.append("priority", report.getPriority())
                 .append("comment", report.getComment())
                 .append("resolved", report.isResolved())
                 .append("city_item_id", report.getCityItemId());
@@ -47,23 +51,32 @@ public class ReportDAO {
      * 
      * @return List
      */
-    public static List<Report> findReports() {
+    public static List<ReportViewObject> findReports() {
         MongoDatabase db = Configurator.INSTANCE.getDatabase();
         MongoCollection collection = db.getCollection(COLLECTION);
 
-        List<Report> reports = new ArrayList<>();
+        List<ReportViewObject> reports = new ArrayList<>();
         
         FindIterable<Document> result = collection.find();
         result.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
                 Report.Builder b = new Report.Builder();
-                b.comment(document.getString("comment"))
-                        .cityItemId(document.getString("city_item_id"))
-                        .priority(document.getInteger("priority"))
-                        .resolved(document.getBoolean("resolved"))
-                        .reportDate(document.getDate("report_date"));
-                reports.add(b.build());
+//                b.comment(document.getString("comment"))
+//                        .cityItemId(document.getString("city_item_id"))
+//                        .priority(document.getInteger("priority"))
+//                        .resolved(document.getBoolean("resolved"))
+//                        .reportDate(new Date(document.getLong("report_date")))
+//                        .id(document.getObjectId("_id").toString());
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                String reportDate = df.format(new Date(document.getLong("report_date")));
+
+                reports.add(new ReportViewObject(
+                        document.getObjectId("_id").toString(),
+                        Integer.toString(document.getInteger("priority")),
+                        document.getString("city_item_id"),
+                        reportDate,
+                        document.getBoolean("resolved") ? "YES" : "NO"));
             }
         });
         

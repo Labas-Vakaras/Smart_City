@@ -79,41 +79,35 @@
             <div class="col-md-9">
               <div class="row">
                 <div class="col-xs-12">
-                  <h1>Report</h1>
+                  <h1>Reports</h1>
                 </div>
               </div>
               <hr/>
-              <div class="row">
-                <div class="col-md-6">
-                  <h2>Details</h2>
-                  <p>id: ${id}</p>
-                  <p>type: ${type}</p>
-                  <p>description: ${description}</p>
-                </div>
-                <div class="col-md-6">
-                  <div id="map" style="width:100%;height:300px">
-                </div>
-              </div>
               <hr/>
               <div class="row">
                 <div class="col-xs-12">
-                  <form action="/item/report" method="POST">
-                    <input type="hidden" name="id" value="${id}" />
-                    <div class="form-group">
-                      <label for="priority">Priority:</label>
-                      <select class="form-control" id="type" name="priority" >
-                        <option value="1">Low</option>
-                        <option value="2">Medium</option>
-                        <option value="3">High</option>
-                      </select>
-                      <small id="priorityHelp" class="form-text text-muted">Low -> should be consdidered, Medium -> check/resolve in 1-2 days, High -> Life in danger</small>
-                    </div>
-                    <div class="form-group">
-                      <label for="comments">Comments</label>
-                      <textarea class="form-control" id="comments" name="comment" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Item</th>
+                        <th>Resolved</th>
+                        <th>Priority</th>
+                        <th>Submited on</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <#list reports as report>
+                      <tr>
+                        <td>${report.id}</td>
+                        <td>${report.cityItemId}</td>
+                        <td>${report.resolved}</td>
+                        <td>${report.priority}</td>
+                        <td>${report.resolveDate}</td>
+                      </tr>
+                      </#list>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -144,25 +138,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-    
-    <script>
-        function initMap() {
-            var mapOptions = {
-                center: new google.maps.LatLng(${lng}, ${lat}),
-                zoom: 14,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(${lng}, ${lat}),
-                map: map,
-                title: 'Item'
-            });
-        }
-    </script>
 
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99K2u7AtDby-uVfuePRLMd4YxgK0oD4k&callback=initMap"></script>
 </body>
 
 </html>

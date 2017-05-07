@@ -26,12 +26,9 @@ public class CityItemDAO
         Document post = new Document();
         post.put("_id",id);
         post.put("type", Integer.toString(cityItem.getType()));
-        post.put("location",new Document("x",String.valueOf(cityItem.getLongitude())).append("y",String.valueOf(cityItem.getLatitude())));
-//        post.put("report", new Document("priority",cityItem.getPriority())
-//                .append("comment",cityItem.getComment())
-//                .append("resolved",String.valueOf(cityItem.isResolved()))
-//                .append("report_date",cityItem.getReport_date().getTime())
-//                .append("resolve_date",cityItem.getResolve_date().getTime()));
+        post.put("location",new Document("x",String.valueOf(cityItem.getLongitude()))
+                .append("y",String.valueOf(cityItem.getLatitude())));
+        post.put("description", cityItem.getDescription());
         MongoCollection<Document> collection = Configurator.INSTANCE.getDatabase().getCollection(COLLECTION);
         try {
             collection.insertOne(post);
