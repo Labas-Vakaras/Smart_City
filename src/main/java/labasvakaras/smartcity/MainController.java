@@ -1,5 +1,6 @@
 package labasvakaras.smartcity;
 
+import labasvakaras.smartcity.routes.CentralRoutesInitializer;
 import freemarker.template.Configuration;
 
 import java.io.IOException;
@@ -22,8 +23,8 @@ public class MainController {
 
     private void initializeRoutes() {
         try {
-            RoutesInitializer routesInitializer = new RoutesInitializer();
-            routesInitializer.initialize();
+            CentralRoutesInitializer routesInitializer = new CentralRoutesInitializer();
+            routesInitializer.initRoutes();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }

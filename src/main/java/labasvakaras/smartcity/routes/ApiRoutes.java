@@ -1,5 +1,6 @@
 package labasvakaras.smartcity.routes;
 
+import java.io.IOException;
 import labasvakaras.smartcity.daos.ReportDAO;
 import spark.Request;
 import spark.Response;
@@ -10,15 +11,13 @@ import static spark.Spark.get;
  *
  * @author Vasilis Naskos
  */
-public class ApiRoutes {
+public class ApiRoutes extends RoutesInitializer {
     
-    public void initApiRoutes() {
+    @Override
+    public void initRoutes() throws IOException {
         initReportsRoute();
     }
     
-    /**
-     * 
-     */
     protected void initReportsRoute() {
         get(new Route("/api/reports") {
             @Override
@@ -27,5 +26,4 @@ public class ApiRoutes {
             }
         });
     }
-    
 }
