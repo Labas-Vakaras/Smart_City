@@ -9,7 +9,7 @@ import java.util.Date;
 public class Report {
     
     private String cityItemID;
-    private String priority;
+    private int priority;
     private String comment;
     private boolean resolved;
     private Date reportDate;
@@ -35,11 +35,11 @@ public class Report {
         this.cityItemID = cityItemID;
     }
     
-    public String getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
@@ -77,7 +77,7 @@ public class Report {
     
     public static class Builder {
         private String cityItemId;
-        private String priority; //TODO change this maybe to enum
+        private int priority; //TODO change this maybe to enum
         private String comment;
         private boolean resolved;
         private Date reportDate;
@@ -88,7 +88,7 @@ public class Report {
             return this;
         }
         
-        public Builder priority(String priority) {
+        public Builder priority(int priority) {
             this.priority = priority;
             return this;
         }
@@ -103,13 +103,13 @@ public class Report {
             return this;
         }
 
-        public Builder reportDate(Date report_date) {
-            this.reportDate = report_date;
+        public Builder reportDate(Date reportDate) {
+            this.reportDate = reportDate;
             return this;
         }
 
-        public Builder resolveDate(Date resolve_date) {
-            this.resolveDate = resolve_date;
+        public Builder resolveDate(Date resolveDate) {
+            this.resolveDate = resolveDate;
             return this;
         }
         

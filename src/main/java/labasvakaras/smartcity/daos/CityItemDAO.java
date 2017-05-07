@@ -2,6 +2,8 @@ package labasvakaras.smartcity.daos;
 
 ;import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Updates;
 import labasvakaras.smartcity.Configurator;
 import labasvakaras.smartcity.entities.CityItem;
 import org.bson.Document;
@@ -84,15 +86,21 @@ public class CityItemDAO
     public static void insertReport(Report report)
     {
         BasicDBObject newDocument = new BasicDBObject();
-        newDocument.append("$set", new BasicDBObject()
-                .append("report.priority",report.getComment())
-                .append("report.comment",report.getComment())
-                .append("report.resolved",report.isResolved())
-                .append("report.report_date",report.getReportDate().getTime())
-                .append("report.resolve_date",report.getResolveDate().getTime()));
-        BasicDBObject searchQuery = new BasicDBObject().append("_id", report.getCityItemId());
-        DB db = (DB) Configurator.INSTANCE.getDatabase();
-        DBCollection collection = db.getCollection(COLLECTION);
-        collection.update(searchQuery, newDocument); //TODO check if succeeds
+        newDocument.append("priority",report.getComment())
+                .append("comment",report.getComment())
+                .append("resolved",report.isResolved());
+        
+        if(report.getReportDate() != null) {
+            newDocument.append("report_date",report.getReportDate().getTime());
+        }
+        if(report.getResolveDate() != null) {
+            newDocument.append("resolve_date",report.getResolveDate().getTime());
+        }
+                
+        BasicDBObject searchQuery = new BasicDBObject()
+                .append("_id", new ObjectId(report.getCityItemId()));
+        MongoDatabase db = Configurator.INSTANCE.getDatabase();
+        MongoCollection collection = db.getCollection(COLLECTION);
+        collection.updateOne(searchQuery, Updates.addToSet("reports", newDocument)); //TODO check if succeeds
     }
 }

@@ -97,7 +97,8 @@
               <hr/>
               <div class="row">
                 <div class="col-xs-12">
-                  <form action="#" method="POST">
+                  <form action="/item/report" method="POST">
+                    <input type="hidden" name="id" value="${id}" />
                     <div class="form-group">
                       <label for="priority">Priority:</label>
                       <select class="form-control" id="type" name="priority" >
@@ -109,7 +110,7 @@
                     </div>
                     <div class="form-group">
                       <label for="comments">Comments</label>
-                      <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                      <textarea class="form-control" id="comments" name="comment" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

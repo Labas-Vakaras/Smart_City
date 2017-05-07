@@ -4,6 +4,7 @@ import freemarker.template.SimpleHash;
 import freemarker.template.TemplateException;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Date;
 import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.entities.CityItem;
 import labasvakaras.smartcity.entities.Report;
@@ -101,7 +102,18 @@ public class RoutesInitializer {
         post(new Route("/item/report") {
             @Override
             public Object handle(Request rqst, Response rspns) {
-                return null;
+                Report.Builder b = new Report.Builder();
+                b.cityItemId(rqst.queryParams("id"))
+                        .comment(rqst.queryParams("comment"))
+                        .priority(Integer.parseInt(rqst.queryParams("priority")))
+                        .reportDate(new Date())
+                        .resolved(false);
+                
+                CityItemDAO.insertReport(b.build());
+                
+                JSONObject jsonResult = new JSONObject();
+                jsonResult.put("success", true);
+                return jsonResult.toString();
             }
         });
     }
