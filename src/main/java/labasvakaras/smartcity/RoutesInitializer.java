@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Writer;
 import labasvakaras.smartcity.daos.CityItemDAO;
 import labasvakaras.smartcity.entities.CityItem;
+import labasvakaras.smartcity.entities.Report;
 import labasvakaras.smartcity.routes.FreemarkerBasedRoute;
 import labasvakaras.smartcity.routes.QRGeneratorRoute;
 import org.json.JSONObject;
@@ -94,6 +95,13 @@ public class RoutesInitializer {
                 data.put("lng", cityItem.getLongitude());
                 
                 template.process(data, writer);
+            }
+        });
+        
+        post(new Route("/item/report") {
+            @Override
+            public Object handle(Request rqst, Response rspns) {
+                return null;
             }
         });
     }
